@@ -8,11 +8,19 @@
 
 #loginBtn,#signupBtn{
      background-color: powderblue;
-     padding-left: 10px;
+     /*padding-left: 10px;*/
+}
+
+/*#login-dialog{
+  display: none;
+}*/
+
+#signupdialog{
+  background-color: #ff0033;
 }
 
 #text{
-  color: #ff0033;  
+  color: #ff0033;
 }
 
 #color{

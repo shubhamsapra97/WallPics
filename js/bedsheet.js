@@ -1,17 +1,17 @@
-var dialog , user;
+var dialog , user , displayName , photoURL , email , uid;
 var provider = new firebase.auth.GoogleAuthProvider();
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
 
-    var displayName = user.displayName;
-    var email = user.email;
-    var emailVerified = user.emailVerified;
-    var photoURL = user.photoURL;
-    var isAnonymous = user.isAnonymous;
-    var uid = user.uid;
-    var providerData = user.providerData;
+    // displayName = user.displayName;
+    // email = user.email;
+    // emailVerified = user.emailVerified;
+    // photoURL = user.photoURL;
+    // isAnonymous = user.isAnonymous;
+    // uid = user.uid;
+    // providerData = user.providerData;
 
     $(".login-id").hide();
     $("#downloadBtn").hide();
@@ -19,6 +19,12 @@ firebase.auth().onAuthStateChanged(function(user) {
     $(".addOnsclose").hide();
     $("#cardLove").hide();
     dialog = document.querySelector('#login-dialog');
+    if (! dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+    dialog.close();
+
+    dialog = document.querySelector('#signupdialog');
     if (! dialog.showModal) {
       dialogPolyfill.registerDialog(dialog);
     }
@@ -87,6 +93,17 @@ var credential = error.credential;
 
 });
 
+$("#signupoption").click(function(){
+  $("#login-dialog").hide();
+
+  dialog = document.getElementById('signupdialog');
+  if (! dialog.showModal) {
+    dialogPolyfill.registerDialog(dialog);
+  }
+  dialog.showModal();
+
+});
+
 $("#fb").click(
   function(){
 
@@ -141,7 +158,7 @@ $("#loginBtn").click(
 
       firebase.auth().signInWithEmailAndPassword(email,password).catch(function(error){
         $("#loginError").show().text(error.message);
-        $("#loginProgress").hide();
+        $("#loginProgress").show();
         $("#loginBtn").show();
       });
     }
@@ -151,21 +168,23 @@ $("#loginBtn").click(
 /*Sign UP Process*/
 $("#signupBtn").click(
   function(){
-    var email = $("#loginEmail").val();
-    var password = $("#loginPassword").val();
+    var email = $("#loginEmail1").val();
+    var password = $("#loginPassword1").val();
+    displayName = $("#loginName").val();
+
     if(email !== "" && password !== ""){
 
       $("#loginProgress").show();
       $("#loginBtn").hide();
-      $("#signupBtn").hide();
 
       firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error){
         $("#loginError").show().text(error.message);
         $("#loginProgress").hide();
-        $("#loginBtn").show();
+        $("#loginBtn").hide();
+        $("#signinoption").hide();
       });
-    }
 
+    }
   });
 
 /*Logout process*/
@@ -209,6 +228,7 @@ function addOnsClose(){
 var uploader = document.getElementById('uploader');
 var fileBtn = document.getElementById('fileButton');
 
+var imageCount=0;
 fileBtn.addEventListener('change' , function(e){
 
   //get file
@@ -247,8 +267,22 @@ fileBtn.addEventListener('change' , function(e){
 
         // Get the download URL
         var Url;
+        var xxx = {};
         storageRef.getDownloadURL().then(function(url) {
           $("#myimg").append("<img id='imgSize' src="+url+"</img>");
+          var c = Number(imageCount);
+          c = c+1;
+          imageCount = c.toString();
+          var k = "images"+imageCount;
+          alert(k);
+          xxx[k] = url;
+          var firebaseRef = firebase.database().ref("MYiMAGES").setValue(xxx);
+
+            // username: displayName,
+            // email: email,
+
+          // firebase.database().ref().child("myImages").push(xxx);
+          alert("database added");
         });
 
       }

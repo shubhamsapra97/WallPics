@@ -1,6 +1,22 @@
 var dialog , user , displayName , photoURL , email , uid;
 var provider = new firebase.auth.GoogleAuthProvider();
 
+window.onload = function(){
+    var array= [];
+
+    var hell = firebase.database().ref().child("myimages");
+
+    hell.on('child_added', function(snapshot) {
+
+      $("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
+
+      array.push(snapshot.value);
+
+    }, function (error) {
+       console.log("Error: " + error.code);
+    });
+}
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
@@ -238,7 +254,7 @@ var fileBtn = document.getElementById('fileButton');
 
 
 
-var imageCount=0,c,f=0;
+var imageCount=0,c=0,f=0;
 
 fileBtn.addEventListener('change' , function(e){
 
@@ -250,10 +266,10 @@ fileBtn.addEventListener('change' , function(e){
   //get file
   var file = e.target.files[0];
 
-  imageCount = imageCount.toString();
+  imagecount = imageCount.toString();
 
   //create storage ref
-  var storageRef = firebase.storage().ref('catty/' + imageCount);
+  var storageRef = firebase.storage().ref('catty/' + imagecount);
 
 //  var ref = firebase.database().ref().child("catty");
 
@@ -294,26 +310,21 @@ fileBtn.addEventListener('change' , function(e){
 
           c = Number(imageCount);
 
-          //$("#myimg").append("<img id='" + imageCount + "'src="+url+"</img>");
+          $("#myimg").append("<img id='" + imageCount + "'src="+url+"</img>");
 
         //  alert(ref.length);
 
           var k = "images"+imageCount;
           //alert(k);
 
-          var xxx = {};
-          xxx[k] = url
+          // var xxx = {};
+          // xxx[k] = url;
+
+
           var firebaseRef = firebase.database().ref();
           firebaseRef.child("myimages").child(k).set(url);
 
-          var ref = firebase.database().ref().child("myimages");
 
-          ref.on('child_added', function(snapshot) {
-             //alert(snapshot.val());
-             $("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
-          }, function (error) {
-             console.log("Error: " + error.code);
-          });
 
           // ref.on("child_added", function(snapshot) {
           //   var newPost = snapshot.val();
@@ -321,6 +332,7 @@ fileBtn.addEventListener('change' , function(e){
           // });
 
           c = c+1;
+
           imageCount = c.toString();
 
           // firebase.database().ref("myimages").ref(k).set({
@@ -333,6 +345,21 @@ fileBtn.addEventListener('change' , function(e){
 
       }
     )
+});
+var href = firebase.database().ref().child("myimages");
+
+href.on('child_removed', function(oldChildSnapshot) {
+   var g = oldChildSnapshot.val();
+   c--;
+   alert(oldChildSnapshot.key());
+
+   var firebaseRef = firebase.database().ref("imageCount/").set(c);
+  //  var k = snapshot.parent().val();
+  //  alert(k);
+  //  alert("deleted from db !! fucked");
+   //$("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
+}, function (error) {
+   console.log("Error: " + error.code);
 });
 
 

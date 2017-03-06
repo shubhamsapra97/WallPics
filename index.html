@@ -14,7 +14,9 @@
     <!--<link href="mdb/css/mdb.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+
+
+  <body onload="onloadFunction()">
 
     <dialog id="login-dialog" class="mdl-dialog">
     <div id="links">
@@ -30,7 +32,7 @@
         <label id="color" class="mdl-textfield__label" for="sample3">Email...</label>
       </div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" id="loginPassword">
+        <input class="mdl-textfield__input" type="password" id="loginPassword">
         <label id="color" class="mdl-textfield__label" for="sample3">Password...</label>
       </div>
     </div>
@@ -59,14 +61,14 @@
   <div id="content" class="mdl-dialog__content">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <input class="mdl-textfield__input" type="text" id="loginName">
-      <label id="color" class="mdl-textfield__label" for="sample3">Name...</label>
+      <label id="color" class="mdl-textfield__label" for="sample3">Username...</label>
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="loginEmail1">
+      <input class="mdl-textfield__input" type="text" id="loginEmail">
       <label id="color" class="mdl-textfield__label" for="sample3">Email...</label>
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="loginPassword1">
+      <input class="mdl-textfield__input" type="text" id="loginPassword">
       <label id="color" class="mdl-textfield__label" for="sample3">Password...</label>
     </div>
   </div>
@@ -74,8 +76,10 @@
     <!-- Colored raised button -->
 
     <button id="signupBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
-      <span id="text1">SIGN UP<span>
+    <span id="text1">SIGN UP<span>
     </button>
+
+    <div id="signinoption">SignIn..?</div>
 
     <!-- MDL Spinner Component -->
     <div id="loginProgress" class="mdl-spinner mdl-js-spinner is-active"></div>
@@ -171,9 +175,12 @@
 
   <div id="myimg"> </div>
 
-<button id="addBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-  <i class="material-icons">add</i>
-</button>
+      <button id="addBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+        <i class="material-icons">add</i>
+        <span class="mdl-button__ripple-container">
+          <span class="mdl-ripple"></span>
+        </span>
+      </button>
 
 <dialog id="addBtn-dialog" class="mdl-dialog">
    <span class="close" onclick="dialogClose()">&times;</span>

@@ -160,6 +160,7 @@ $("#loginBtn").click(
         $("#loginError").show().text(error.message);
         $("#loginProgress").show();
         $("#loginBtn").show();
+        $("#login-dialog").hide();
       });
     }
   }
@@ -172,12 +173,15 @@ $("#signupBtn").click(
     var password = $("#loginPassword1").val();
     displayName = $("#loginName").val();
 
+
+
     if(email !== "" && password !== ""){
 
       $("#loginProgress").show();
       $("#loginBtn").hide();
 
       firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error){
+
         $("#loginError").show().text(error.message);
         $("#loginProgress").hide();
         $("#loginBtn").hide();
@@ -192,13 +196,17 @@ $("#signupBtn").click(
 $("#signoutBtn").click(
   function(){
     firebase.auth().signOut().then(function() {
-    // Sign-out successful.
+        console.log("logged out");
     }, function(error) {
-    // An error happened.
-    alert(error.message);
+        console.log("error occured");
     });
     }
 );
+
+// window.onbeforeunload = function(){
+//
+//
+// };
 
 $("#addBtn").click(
   function(){
@@ -228,14 +236,28 @@ function addOnsClose(){
 var uploader = document.getElementById('uploader');
 var fileBtn = document.getElementById('fileButton');
 
-var imageCount=0;
+
+
+var imageCount=0,c,f=0;
+
 fileBtn.addEventListener('change' , function(e){
+
+  f = Number(imageCount);
+  f++;
+
+  var firebaseRef = firebase.database().ref("imageCount/").set(f);
 
   //get file
   var file = e.target.files[0];
 
+  imageCount = imageCount.toString();
+
   //create storage ref
-  var storageRef = firebase.storage().ref('catty/' + file.name);
+  var storageRef = firebase.storage().ref('catty/' + imageCount);
+
+//  var ref = firebase.database().ref().child("catty");
+
+
 
   var  uploadmetadata={
       cacheControl: "max-age=" + (60*60*24*365)
@@ -267,27 +289,53 @@ fileBtn.addEventListener('change' , function(e){
 
         // Get the download URL
         var Url;
-        var xxx = {};
+
         storageRef.getDownloadURL().then(function(url) {
-          $("#myimg").append("<img id='imgSize' src="+url+"</img>");
-          var c = Number(imageCount);
+
+          c = Number(imageCount);
+
+          //$("#myimg").append("<img id='" + imageCount + "'src="+url+"</img>");
+
+        //  alert(ref.length);
+
+          var k = "images"+imageCount;
+          //alert(k);
+
+          var xxx = {};
+          xxx[k] = url
+          var firebaseRef = firebase.database().ref();
+          firebaseRef.child("myimages").child(k).set(url);
+
+          var ref = firebase.database().ref().child("myimages");
+
+          ref.on('child_added', function(snapshot) {
+             //alert(snapshot.val());
+             $("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
+          }, function (error) {
+             console.log("Error: " + error.code);
+          });
+
+          // ref.on("child_added", function(snapshot) {
+          //   var newPost = snapshot.val();
+          //   alert(newPost);
+          // });
+
           c = c+1;
           imageCount = c.toString();
-          var k = "images"+imageCount;
-          alert(k);
-          xxx[k] = url;
-          var firebaseRef = firebase.database().ref("MYiMAGES").setValue(xxx);
 
-            // username: displayName,
-            // email: email,
-
-          // firebase.database().ref().child("myImages").push(xxx);
-          alert("database added");
+          // firebase.database().ref("myimages").ref(k).set({
+          //   // username: displayName,
+          //   // email: email,
+          //    image : url
+          // });
+          //alert("database added");
         });
 
       }
     )
 });
+
+
 
 var item;
 var img = document.getElementById('myimg');
@@ -298,76 +346,79 @@ img.addEventListener('click' , function(e){
   $(".addOnsclose").show();
 });
 
-var download = document.getElementById('downloadBtn');
-var i,j;
-download.addEventListener('click',function(){
-    var res = item.src.slice(69,82);
-
-    var l = res.length;
-    for(i=0;i<l;i++){
-        if(res[i]==='%'){
-            j=i;
-            break;
-        }
-    }
-
-    var name = res.slice((j+3),(l+1));
-    var storage = firebase.storage();
-
-    var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/catty%20'+name);
-console.log(httpsReference);
-    // var storageRef = firebase.storage().ref('catty/' + name);
-
-    httpsReference.getDownloadURL().then(function(url) {
-      // console.log(url);
-      //   document.getElementsById("hi").setAttribute("href", url);
-      var xhr = new XMLHttpRequest();
-  xhr.responseType = 'blob';
-  xhr.onload = function(event) {
-    var blob = xhr.response;
-  };
-  xhr.open('GET', url);
-  xhr.send();
-
-    }).catch(function(error) {
-      switch (error.code) {
-         case 'storage/object_not_found':
-           alert("File doesn't exist");
-           break;
-
-         case 'storage/unauthorized':
-           alert("You don't have permission to access the object");
-           break;
-
-         case 'storage/canceled':
-           alert("Upload Cancelled");
-           break;
-
-         case 'storage/unknown':
-           alert("Unknown error occurred, inspect the server response");
-           break;
-        }
-
-    });
-
-})
+//var download = document.getElementById('downloadBtn');
+//var i,j;
+// download.addEventListener('click',function(){
+//     var res = item.src.slice(69,82);
+//
+//     var l = res.length;
+//     for(i=0;i<l;i++){
+//         if(res[i]==='%'){
+//             j=i;
+//             break;
+//         }
+//     }
+//
+//     var name = res.slice((j+3),(l+1));
+//     var storage = firebase.storage();
+//
+//     var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/catty%20'+name);
+// console.log(httpsReference);
+//     // var storageRef = firebase.storage().ref('catty/' + name);
+//
+//     httpsReference.getDownloadURL().then(function(url) {
+//       // console.log(url);
+//       //   document.getElementsById("hi").setAttribute("href", url);
+//       var xhr = new XMLHttpRequest();
+//   xhr.responseType = 'blob';
+//   xhr.onload = function(event) {
+//     var blob = xhr.response;
+//   };
+//   xhr.open('GET', url);
+//   xhr.send();
+//
+//     }).catch(function(error) {
+//       switch (error.code) {
+//          case 'storage/object_not_found':
+//            alert("File doesn't exist");
+//            break;
+//
+//          case 'storage/unauthorized':
+//            alert("You don't have permission to access the object");
+//            break;
+//
+//          case 'storage/canceled':
+//            alert("Upload Cancelled");
+//            break;
+//
+//          case 'storage/unknown':
+//            alert("Unknown error occurred, inspect the server response");
+//            break;
+//         }
+//
+//     });
+//
+// })
 
 $("#deleteBtn").click(
   function(){
 
-    var res = item.src.slice(69,82);
+    // var res = item.src.slice(69,82);
+    //
+    // var l = res.length;
+    // for(i=0;i<l;i++){
+    //     if(res[i]==='%'){
+    //         j=i;
+    //         break;
+    //     }
+    // }
+    //
+    // var name = res.slice((j+3),(l+1));
 
-    var l = res.length;
-    for(i=0;i<l;i++){
-        if(res[i]==='%'){
-            j=i;
-            break;
-        }
-    }
+    var storageRef = firebase.storage().ref('catty/' + item.id);
 
-    var name = res.slice((j+3),(l+1));
-
-    var storageRef = firebase.storage().ref('catty/' + name);
+    f=f-1;
+    var firebaseRef = firebase.database().ref("imageCount/").set(f);
 
     // // Delete the file
     storageRef.delete().then(function() {
@@ -379,6 +430,12 @@ $("#deleteBtn").click(
     $("#downloadBtn").hide();
     $("#deleteBtn").hide();
     $(".addOnsclose").hide();
+
+    var a = "images"+item.id;
+
+    firebase.database().ref().child("myimages").child(a).remove();
+    alert("database deleted");
+
   }
 );
 

@@ -1,21 +1,44 @@
-var dialog , user , displayName , photoURL , email , uid;
+var dialog , user , displayName , photoURL , email , uid , imageCount=0;
 var provider = new firebase.auth.GoogleAuthProvider();
 
-window.onload = function(){
-    var array= [];
+// window.onload = function(){
+//     var array= [];
+//
+//     var hell = firebase.database().ref().child("myimages");
+//
+//     hell.on('child_added', function(snapshot) {
+//
+//       $("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
+//
+//       array.push(snapshot.val());
+//
+//     }, function (error) {
+//        console.log("Error: " + error.code);
+//     });
+//
+//     var chell = firebase.database().ref().child("imageCount");
+//
+//     chell.on('value', function(snapshot) {
+//
+//         imageCount = snapshot.val();
+//
+//     }, function (error) {
+//        console.log("Error: " + error.code);
+//     });
+// }
 
-    var hell = firebase.database().ref().child("myimages");
+// var hey =   hell = firebase.database().ref().child("myimages");
+// hey.on('child_removed' , function(snapshot){
+//
+//     var snappy = snapshot.val();
+//     var a = snappy.slice(77,78);
+//
+//     $("#a").remove();
+//
+//
+// });
 
-    hell.on('child_added', function(snapshot) {
 
-      $("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
-
-      array.push(snapshot.value);
-
-    }, function (error) {
-       console.log("Error: " + error.code);
-    });
-}
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -254,7 +277,17 @@ var fileBtn = document.getElementById('fileButton');
 
 
 
-var imageCount=0,c=0,f=0;
+
+
+
+
+
+
+
+
+
+
+var c=0,f=0;
 
 fileBtn.addEventListener('change' , function(e){
 
@@ -346,18 +379,46 @@ fileBtn.addEventListener('change' , function(e){
       }
     )
 });
+
+
+
+
+
+
+
+
+
+
+
+
 var href = firebase.database().ref().child("myimages");
 
 href.on('child_removed', function(oldChildSnapshot) {
    var g = oldChildSnapshot.val();
    c--;
-   alert(oldChildSnapshot.key());
 
    var firebaseRef = firebase.database().ref("imageCount/").set(c);
   //  var k = snapshot.parent().val();
   //  alert(k);
   //  alert("deleted from db !! fucked");
    //$("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
+
+   var snappy = oldChildSnapshot.val();
+   var a = snappy.slice(77,78);
+
+   var u = a.toString();
+
+   var reffy = firebase.storage().ref("catty/" + u);
+
+   reffy.delete().then(function() {
+     alert("File deleted successfully!");
+   }).catch(function(error) {
+     alert("Uh-oh, an error occurred!");
+   });
+
+   $("#a").attr("display" , "none");
+
+
 }, function (error) {
    console.log("Error: " + error.code);
 });

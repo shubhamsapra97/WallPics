@@ -1,14 +1,15 @@
 var dialog , user , displayName , photoURL , email , uid , imageCount=0;
 var provider = new firebase.auth.GoogleAuthProvider();
 
-// window.onload = function(){
-//     var array= [];
+// (function(){
 //
 //     var hell = firebase.database().ref().child("myimages");
 //
 //     hell.on('child_added', function(snapshot) {
 //
 //       $("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
+//
+//       //$("#myimg").append("<img id='" + imageCount + "'class='" + materialboxed  +  "'src="+snapshot.val()+"</img>");
 //
 //       array.push(snapshot.val());
 //
@@ -25,7 +26,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 //     }, function (error) {
 //        console.log("Error: " + error.code);
 //     });
-// }
+// })();
 
 // var hey =   hell = firebase.database().ref().child("myimages");
 // hey.on('child_removed' , function(snapshot){
@@ -196,10 +197,12 @@ $("#loginBtn").click(
       $("#signupBtn").hide();
 
       firebase.auth().signInWithEmailAndPassword(email,password).catch(function(error){
+
         $("#loginError").show().text(error.message);
         $("#loginProgress").show();
         $("#loginBtn").show();
         $("#login-dialog").hide();
+
       });
     }
   }
@@ -288,7 +291,7 @@ var fileBtn = document.getElementById('fileButton');
 
 
 var c=0,f=0;
-
+var imagecount = '';
 fileBtn.addEventListener('change' , function(e){
 
   f = Number(imageCount);
@@ -343,11 +346,11 @@ fileBtn.addEventListener('change' , function(e){
 
           c = Number(imageCount);
 
-          $("#myimg").append("<img id='" + imageCount + "'src="+url+"</img>");
+          $("#myimg").append("<img id='" + imagecount + "'src="+url+"</img>").addClass('materialboxed');
 
         //  alert(ref.length);
 
-          var k = "images"+imageCount;
+          var k = "images"+imagecount;
           //alert(k);
 
           // var xxx = {};
@@ -394,21 +397,26 @@ fileBtn.addEventListener('change' , function(e){
 var href = firebase.database().ref().child("myimages");
 
 href.on('child_removed', function(oldChildSnapshot) {
-   var g = oldChildSnapshot.val();
-   c--;
 
+   c--;
    var firebaseRef = firebase.database().ref("imageCount/").set(c);
+   imageCount = c;
+
+   //$("#a").attr("display" , "none");
   //  var k = snapshot.parent().val();
   //  alert(k);
-  //  alert("deleted from db !! fucked");
+  //  alert("deleted from db !!");
    //$("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
 
    var snappy = oldChildSnapshot.val();
+
    var a = snappy.slice(77,78);
 
    var u = a.toString();
 
    var reffy = firebase.storage().ref("catty/" + u);
+
+   alert(u);
 
    reffy.delete().then(function() {
      alert("File deleted successfully!");
@@ -416,7 +424,9 @@ href.on('child_removed', function(oldChildSnapshot) {
      alert("Uh-oh, an error occurred!");
    });
 
-   $("#a").attr("display" , "none");
+   alert(document.getElementById('a').src);
+
+   //$("#u").style.display = 'none';
 
 
 }, function (error) {

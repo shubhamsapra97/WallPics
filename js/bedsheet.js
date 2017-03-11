@@ -1,32 +1,32 @@
 var dialog , user , displayName , photoURL , email , uid , imageCount=0;
 var provider = new firebase.auth.GoogleAuthProvider();
 
-// (function(){
-//
-//     var hell = firebase.database().ref().child("myimages");
-//
-//     hell.on('child_added', function(snapshot) {
-//
-//       $("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
-//
-//       //$("#myimg").append("<img id='" + imageCount + "'class='" + materialboxed  +  "'src="+snapshot.val()+"</img>");
-//
-//       array.push(snapshot.val());
-//
-//     }, function (error) {
-//        console.log("Error: " + error.code);
-//     });
-//
-//     var chell = firebase.database().ref().child("imageCount");
-//
-//     chell.on('value', function(snapshot) {
-//
-//         imageCount = snapshot.val();
-//
-//     }, function (error) {
-//        console.log("Error: " + error.code);
-//     });
-// })();
+(function(){
+
+    var hell = firebase.database().ref().child("myimages");
+
+    hell.on('child_added', function(snapshot) {
+
+      $("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
+
+      //$("#myimg").append("<img id='" + imageCount + "'class='" + materialboxed  +  "'src="+snapshot.val()+"</img>");
+
+      array.push(snapshot.val());
+
+    }, function (error) {
+       console.log("Error: " + error.code);
+    });
+
+    var chell = firebase.database().ref().child("imageCount");
+
+    chell.on('value', function(snapshot) {
+
+        imageCount = snapshot.val();
+
+    }, function (error) {
+       console.log("Error: " + error.code);
+    });
+})();
 
 // var hey =   hell = firebase.database().ref().child("myimages");
 // hey.on('child_removed' , function(snapshot){
@@ -346,7 +346,7 @@ fileBtn.addEventListener('change' , function(e){
 
           c = Number(imageCount);
 
-          $("#myimg").append("<img id='" + imagecount + "'src="+url+"</img>").addClass('materialboxed');
+          $("#myimg").append("<img class='" + materialboxed + "'id='" + imagecount + "'src='"+url+"'</img>");
 
         //  alert(ref.length);
 

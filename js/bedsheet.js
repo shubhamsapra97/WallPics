@@ -1,5 +1,7 @@
-var dialog , user , displayName , photoURL , email , uid , imageCount=0;
+var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0,f=0;;
 var provider = new firebase.auth.GoogleAuthProvider();
+
+$( ".wow" ).addClass( "bounce" );
 
 (function(){
 
@@ -7,26 +9,46 @@ var provider = new firebase.auth.GoogleAuthProvider();
 
     hell.on('child_added', function(snapshot) {
 
+
+      // $('.materialboxed').materialbox();
+
       $("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
 
-      //$("#myimg").append("<img id='" + imageCount + "'class='" + materialboxed  +  "'src="+snapshot.val()+"</img>");
 
-      array.push(snapshot.val());
-
-    }, function (error) {
-       console.log("Error: " + error.code);
-    });
-
-    var chell = firebase.database().ref().child("imageCount");
-
-    chell.on('value', function(snapshot) {
-
-        imageCount = snapshot.val();
+      // array.push(snapshot.val());
 
     }, function (error) {
        console.log("Error: " + error.code);
     });
+
+
+
+    // var chell = firebase.database().ref("imageCount/");
+    //
+    // chell.once('value').then(function(snapshot) {
+    //     var q = (Number)(snapshot.value);
+    //     // imageCount = q;
+    //     // if(imageCount>0){
+    //     //   imageCount++;
+    //     // }
+    //     alert(snapshot.value);
+    // });
+
+    firebase.database().ref("imageCount/").once('value').then(function(snapshot) {
+          var q = (Number)(snapshot.value);
+         // imageCount = q;
+         // if(imageCount>0){
+         //   imageCount++;
+         // }
+          // alert(snapshot.value);
+   });
+
+
 })();
+
+// $(document).ready(function(){
+//     $('.materialboxed').materialbox();
+//   });
 
 // var hey =   hell = firebase.database().ref().child("myimages");
 // hey.on('child_removed' , function(snapshot){
@@ -290,19 +312,17 @@ var fileBtn = document.getElementById('fileButton');
 
 
 
-var c=0,f=0;
-var imagecount = '';
+
 fileBtn.addEventListener('change' , function(e){
 
-  f = Number(imageCount);
-  f++;
+  f = Number(imageCount)+1;
+  imagecount = imageCount.toString();
 
   var firebaseRef = firebase.database().ref("imageCount/").set(f);
 
   //get file
   var file = e.target.files[0];
 
-  imagecount = imageCount.toString();
 
   //create storage ref
   var storageRef = firebase.storage().ref('catty/' + imagecount);
@@ -344,13 +364,14 @@ fileBtn.addEventListener('change' , function(e){
 
         storageRef.getDownloadURL().then(function(url) {
 
-          c = Number(imageCount);
+        //$("#myimg").append("<img id='" + imageCount + "'src="+snapshot.val()+"</img>");
+        // var s = "#"+imagecount;
 
-          $("#myimg").append("<img class='" + materialboxed + "'id='" + imagecount + "'src='"+url+"'</img>");
+        // $("'"+s+"'").attr("class" , "materialboxed");
 
         //  alert(ref.length);
 
-          var k = "images"+imagecount;
+
           //alert(k);
 
           // var xxx = {};
@@ -358,7 +379,7 @@ fileBtn.addEventListener('change' , function(e){
 
 
           var firebaseRef = firebase.database().ref();
-          firebaseRef.child("myimages").child(k).set(url);
+          firebaseRef.child("myimages").child("images"+imagecount).set(url);
 
 
 
@@ -367,9 +388,11 @@ fileBtn.addEventListener('change' , function(e){
           //   alert(newPost);
           // });
 
-          c = c+1;
+          imageCount++;
 
-          imageCount = c.toString();
+          imageCount = imageCount.toString();
+
+
 
           // firebase.database().ref("myimages").ref(k).set({
           //   // username: displayName,
@@ -398,9 +421,8 @@ var href = firebase.database().ref().child("myimages");
 
 href.on('child_removed', function(oldChildSnapshot) {
 
-   c--;
-   var firebaseRef = firebase.database().ref("imageCount/").set(c);
-   imageCount = c;
+   imageCount--;
+   var firebaseRef = firebase.database().ref("imageCount/").set(imageCount);
 
    //$("#a").attr("display" , "none");
   //  var k = snapshot.parent().val();
@@ -412,19 +434,13 @@ href.on('child_removed', function(oldChildSnapshot) {
 
    var a = snappy.slice(77,78);
 
-   var u = a.toString();
-
-   var reffy = firebase.storage().ref("catty/" + u);
-
-   alert(u);
+   var reffy = firebase.storage().ref("catty/" + a.toString());
 
    reffy.delete().then(function() {
      alert("File deleted successfully!");
    }).catch(function(error) {
      alert("Uh-oh, an error occurred!");
    });
-
-   alert(document.getElementById('a').src);
 
    //$("#u").style.display = 'none';
 

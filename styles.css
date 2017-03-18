@@ -114,11 +114,10 @@
 #myimg {
     display: flex;
     flex-wrap: wrap;
-    float: left;
 }
 
 #myimg img:hover {
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 #imgSize{

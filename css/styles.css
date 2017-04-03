@@ -1,0 +1,146 @@
+#page-title-span{
+  margin-left: 10px;
+}
+
+#login-dialog{
+  background-color: rgba(52,73,94,0.7);
+}
+
+article{
+  max-height: 20vh;
+  width: 30%;
+}
+
+/*#description{
+  max-height: 2px;
+}*/
+
+#loginBtn,#signupBtn{
+     background-color: powderblue;
+     /*padding-left: 10px;*/
+}
+
+/*#login-dialog{
+  display: none;
+}*/
+
+#signupdialog{
+  background-color: rgba(52,73,94,0.7);
+}
+
+#text{
+  color: #ff0033;
+}
+
+#color{
+  color: black;
+}
+
+.button-icon{
+  margin-left: 10px;
+}
+
+#fb,#google,#anome{
+  font-size: 25px;
+  padding-left: 20px;
+}
+
+#links{
+  padding-left: 40px;
+  color: powderblue;
+}
+
+#login-page{
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #fff;
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+#downloadPop{
+  top: 35%;
+}
+
+#loginProgress,#loginError,#bunny{
+  display: none;
+}
+
+#signupBtn{
+  margin-right: 45px;
+}
+
+#addBtn{
+  position: fixed;
+  top: 85vh;
+  left: 92vw;
+  z-index: 10;
+}
+
+#uploader{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.close,.addOnsclose{
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+#deleteBtn{
+  color: #aaa;
+  font-size: 28px;
+  margin-right: 6px;
+  z-index: 1200;
+}
+
+#downloadBtn{
+  color: #aaa;
+  font-size: 28px;
+  margin-right: 6px;
+}
+
+#fileButton{
+  max-width: 100%;
+}
+
+#signoutBtn{
+  margin: 15px 10px 10px 10px;
+  background-color: #A442DC;
+}
+
+.close:hover,.close:focus,#deleteBtn:hover,#deleteBtn:focus,#downloadBtn:hover,#downloadBtn:focus,.addOnsclose:hover , .addOnsclose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#myimg {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*#myimg img:hover {
+    opacity: 0.7;
+}*/
+
+#sidebar{
+  color: cyan;
+  font-family: 'Barrio', cursive;
+  font-size: 22px;
+  line-height: 50px;
+  text-align: center;
+}

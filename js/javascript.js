@@ -35,7 +35,7 @@ var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , 
  });
 
  firebase.database().ref().child("imageCount/").once("value", function(snap) {
-    imageCount = (Number)(snapshot.val());
+    imageCount = (Number)(snap.val());
 });
 
 
@@ -89,11 +89,25 @@ firebase.auth().onAuthStateChanged(function(user) {
     $("#signupBtn").show();
     $("#loginBtn").show();
 
-    dialog = document.querySelector('#login-dialog');
-    if (! dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
-    }
-    dialog.showModal();
+    setTimeout(function(){
+      $("#loginImage").attr("class" , "animated shake");
+    }, 3000);
+
+    setTimeout(function(){
+      $("#loginImage").attr("class" , "animated fadeOutRightBig");
+    }, 5000);
+
+
+    // $("#loginImage").attr("class" , "animated fadeOutRightBig");
+
+    setTimeout(function(){
+        dialog = document.querySelector('#login-dialog');
+        if (! dialog.showModal) {
+          dialogPolyfill.registerDialog(dialog);
+        }
+        dialog.showModal();
+    }, 6000);
+
   }
 });
 
@@ -138,10 +152,9 @@ $("#signupBtn").click(
     var email = $("#loginEmail1").val();
     var password = $("#loginPassword1").val();
 
+    if(email !== " " && password !== " "){
 
-    if(email !== "" && password !== ""){
-
-      $("#loginProgress").show();
+      // $("#loginProgress").show();
       $("#loginBtn").hide();
       $("#login-dialog").removeClass('animated ' + 'fadeIn');
       $('#login-dialog').addClass('animated fadeOut');
@@ -155,7 +168,6 @@ $("#signupBtn").click(
         $("#loginBtn").hide();
         $("#signinoption").hide();
       });
-
     }
   });
 
@@ -297,7 +309,6 @@ $("#signupBtn").click(
   var img = document.getElementById('myimg');
   img.addEventListener('click' , function(e){
     item = e.target.id;
-    alert(item);
     $("#downloadBtn").show();
     // $("#deleteBtn").show();
     $(".addOnsclose").show();

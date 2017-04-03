@@ -1,4 +1,4 @@
-var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0,f=0;
+var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , item;
 
 // $(document).ready(function(){
 //
@@ -26,21 +26,34 @@ var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0,f=
  var hell = firebase.database().ref().child("myimages");
  hell.on('child_added', function(snapshot) {
   //  $(".image").attr("src" , snapshot.val());
-  $("#myimg").append("<img class='materialboxed' id='" + imageCount + "'src="+snapshot.val()+"</img>");
+  $("#myimg").append("<img class='materialboxed' id='" + imageCount + "'src="+snapshot.val() + " width='200' height='300' style='padding-left:23px;' </img>");
+  imageCount++;
   $('.materialboxed').materialbox();
   //  $("#"+imageCount).attr("class","materialboxed");
  }, function (error) {
     alert("Error: " + error.code);
  });
+
+ firebase.database().ref().child("imageCount/").once("value", function(snap) {
+    imageCount = (Number)(snapshot.val());
+});
+
+
+      //  firebase.database().ref().child("imageCount").on("value", function(snapshot) {
+      //    alert((Number)(snapshot.key));
+      //  }, function (errorObject) {
+      //    alert(errorObject.code);
+      //  });
+
 })();
 
-firebase.database().ref("imageCount").on('value',function(snapshot) {
-      var q = (Number)(snapshot.value);
-     // imageCount = q;
-     // if(imageCount>0){
-     //   imageCount++;
-     // }
-});
+
+
+// firebase.database().ref().child("imageCount").on("value", function(snapshot) {
+//   alert((Number)(snapshot.value));
+// }, function (errorObject) {
+//   alert(errorObject.code);
+// });
 
 // ADDING FUNCTIONALITIES.....
 
@@ -277,18 +290,18 @@ $("#signupBtn").click(
 
   function addOnsClose(){
     $("#downloadBtn").hide();
-    $("#deleteBtn").hide();
+    // $("#deleteBtn").hide();
     $(".addOnsclose").hide();
   }
 
-  var item;
-  // var img = document.getElementById('myimg');
-  // img.addEventListener('click' , function(e){
-  //   item = e.target.id;
-  //   $("#downloadBtn").show();
-  //   $("#deleteBtn").show();
-  //   $(".addOnsclose").show();
-  // });
+  var img = document.getElementById('myimg');
+  img.addEventListener('click' , function(e){
+    item = e.target.id;
+    alert(item);
+    $("#downloadBtn").show();
+    // $("#deleteBtn").show();
+    $(".addOnsclose").show();
+  });
 
   // ADDED FUNCTIONALITIES.....
 
@@ -296,7 +309,7 @@ $("#signupBtn").click(
 
   fileButton.addEventListener('change' , function(e){
 
-    f = imageCount+1;
+    var f = imageCount+1;
     imagecount = imageCount.toString();
 
     var firebaseRef = firebase.database().ref("imageCount/").set(f);
@@ -334,8 +347,6 @@ $("#signupBtn").click(
             firebaseRef.child("myimages").child("images"+imagecount).set(url);
             $('.materialboxed').materialbox();
 
-            imageCount++;
-
           });
 
         }
@@ -368,40 +379,41 @@ $("#signupBtn").click(
   });
 
 
-  $("#deleteBtn").click(
-    function(){
+  // $("#deleteBtn").click(
+  //   function(){
+  //
+  //     var storageRef = firebase.storage().ref('catty/' + item.id);
+  //
+  //     f=f-1;
+  //     var firebaseRef = firebase.database().ref("imageCount/").set(f);
+  //
+  //     // // Delete the file
+  //     storageRef.delete().then(function() {
+  //       alert("File deleted successfully!");
+  //     }).catch(function(error) {
+  //       alert("Uh-oh, an error occurred!");
+  //     });
+  //     // item.style.display = 'none';
+  //     $("#downloadBtn").hide();
+  //     $("#deleteBtn").hide();
+  //     $(".addOnsclose").hide();
+  //
+  //
+  //     var a = "images"+item;
+  //
+  //     firebase.database().ref().child("myimages").child(a).remove();
+  //     alert("database deleted");
+  //
+  //   }
+  // );
 
-      var storageRef = firebase.storage().ref('catty/' + item.id);
-
-      f=f-1;
-      var firebaseRef = firebase.database().ref("imageCount/").set(f);
-
-      // // Delete the file
-      storageRef.delete().then(function() {
-        alert("File deleted successfully!");
-      }).catch(function(error) {
-        alert("Uh-oh, an error occurred!");
-      });
-      // item.style.display = 'none';
-      $("#downloadBtn").hide();
-      $("#deleteBtn").hide();
-      $(".addOnsclose").hide();
-
-
-      var a = "images"+item;
-
-      firebase.database().ref().child("myimages").child(a).remove();
-      alert("database deleted");
-
-    }
-  );
-
-  $("#downloadBtn").click(function(e){
-      alert(item);
-      var c = item.toString();
-      $("#downloading").attr("download" , item);
-      $("#downloading").attr("href" , $("#"+c).attr('src'));
-      $("#downloading").attr("title" , item);
-      alert(item.name);
-      $("#image").attr('src',k.slice(0,k.length-5));
-  });
+  // $("#downloadBtn").click(function(e){
+  //     var c = item.toString();
+  //     // alert(item);
+  //     $("#downloading").attr("download" , item);
+  //     $("#downloading").attr("href" , $("#"+c).attr('src'));
+  //     var k = $("#"+c).attr('src');
+  //     // alert(k);
+  //     $("#downloading").attr("title" , item);
+  //     $("#image").attr('src',k.slice(0,k.length-5));
+  // });

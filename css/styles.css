@@ -80,7 +80,6 @@ article{
   position: fixed;
   top: 85vh;
   left: 92vw;
-  z-index: 10;
 }
 
 #uploader{
@@ -131,6 +130,7 @@ article{
   max-height: 100%;
   display: flex;
   flex-wrap: wrap;
+  padding-left: 1vh;
 }
 
 /*#myimg img:hover {

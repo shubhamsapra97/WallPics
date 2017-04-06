@@ -26,10 +26,10 @@ var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , 
  var hell = firebase.database().ref().child("myimages");
  hell.on('child_added', function(snapshot) {
   //  $(".image").attr("src" , snapshot.val());
-  $("#myimg").append("<img class='materialboxed' id='" + imageCount + "'src="+snapshot.val() + " width='200' height='300' style='padding-left:23px;' </img>");
+  $("#myimg").append("<img class='materialboxed happy' id='" + imageCount + "'src="+snapshot.val() + " width='200' height='300' style='padding-left:23px;' </img>");
   imageCount++;
   $('.materialboxed').materialbox();
-  //  $("#"+imageCount).attr("class","materialboxed");
+  //$("#"+imageCount).attr("class","materialboxed");
  }, function (error) {
     alert("Error: " + error.code);
  });
@@ -38,39 +38,31 @@ var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , 
     imageCount = (Number)(snap.val());
 });
 
-
-      //  firebase.database().ref().child("imageCount").on("value", function(snapshot) {
-      //    alert((Number)(snapshot.key));
-      //  }, function (errorObject) {
-      //    alert(errorObject.code);
-      //  });
-
 })();
-
-
-
-// firebase.database().ref().child("imageCount").on("value", function(snapshot) {
-//   alert((Number)(snapshot.value));
-// }, function (errorObject) {
-//   alert(errorObject.code);
-// });
 
 // ADDING FUNCTIONALITIES.....
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
+    $("#loginImage").css("display", "none");
     $("#login-page").hide();
     $("#downloadBtn").hide();
     $("#deleteBtn").hide();
+    $("#downloading").hide();
     $(".addOnsclose").hide();
+    $("#loginImage").removeClass('fadeInLeftBig');
 
-    // if(user.uid == "VReENzNYOdV9LiFtxoA60M9adzp2"){
-    //   $("#addBtn").show();
-    // }
-    // else{
-    //   $("#addBtn").hide();
-    // }
+    // $("#loginImage").removeClass('fadeInRightBig');
+    // $("#loginImage").removeClass('Shake');
+
+
+    if(user.uid == "mlVXa9EpK9YIxSHNvWXj9JTjMhM2"){
+      $("#addBtn").hide();
+    }
+    else{
+      $("#addBtn").show();
+    }
 
     dialog = document.querySelector('#login-dialog');
     if (! dialog.showModal) {
@@ -274,8 +266,11 @@ $("#signupBtn").click(
       firebase.auth().signOut().then(function() {
           console.log("logged out");
           $("#login-dialog").removeClass('animated ' + 'fadeOut');
-          $('#login-dialog').addClass('animated fadeIn');
-      }, function(error) {
+          // $('#login-dialog').addClass('animated fadeIn');
+          setTimeout(function(){
+            $("#loginImage").attr("class" , "animated fadeOutRightBig");
+          }, 50);
+                }, function(error) {
           console.log("error occured");
       });
       }
@@ -309,9 +304,11 @@ $("#signupBtn").click(
   var img = document.getElementById('myimg');
   img.addEventListener('click' , function(e){
     item = e.target.id;
-    $("#downloadBtn").show();
-    // $("#deleteBtn").show();
-    $(".addOnsclose").show();
+    var r = item.toString();
+    if(r != "myimg"){
+      $("#downloading").show();
+      $("#downloadBtn").show();
+    }
   });
 
   // ADDED FUNCTIONALITIES.....
@@ -418,13 +415,13 @@ $("#signupBtn").click(
   //   }
   // );
 
-  // $("#downloadBtn").click(function(e){
-  //     var c = item.toString();
-  //     // alert(item);
-  //     $("#downloading").attr("download" , item);
-  //     $("#downloading").attr("href" , $("#"+c).attr('src'));
-  //     var k = $("#"+c).attr('src');
-  //     // alert(k);
-  //     $("#downloading").attr("title" , item);
-  //     $("#image").attr('src',k.slice(0,k.length-5));
-  // });
+  $("#downloading").click(function(e){
+      var c = item.toString();
+      // alert(item);
+      $("#downloading").attr("download" , item);
+      $("#downloading").attr("href" , $("#"+c).attr('src'));
+      var k = $("#"+c).attr('src');
+      // alert(k);
+      $("#downloading").attr("title" , item);
+      $("#image").attr('src',k.slice(0,k.length-5));
+  });

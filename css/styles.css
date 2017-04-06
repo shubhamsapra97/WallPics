@@ -2,6 +2,24 @@
   margin-left: 10px;
 }
 
+#main-page{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background-color: #A9A9A9;
+}
+
+#navbars{
+  background-color: #003366;
+}
+
+#downloadBtn{
+  color: red;
+}
+
+
+
 #login-dialog{
   background-color: rgba(52,73,94,0.7);
 }
@@ -55,13 +73,12 @@ article{
   height: 100%;
   top: 0;
   left: 0;
-  background: #fff;
   position: fixed;
-  z-index: 10;
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #A9A9A9;
 }
 
 #downloadPop{
@@ -72,6 +89,7 @@ article{
   display: none;
 }
 
+
 #signupBtn{
   margin-right: 45px;
 }
@@ -80,6 +98,18 @@ article{
   position: fixed;
   top: 85vh;
   left: 92vw;
+}
+
+#downloading{
+  position: fixed;
+  top: 85vh;
+  left: 92vw;
+  color: navy;
+  z-index: 1000;
+}
+
+#downloadBtn{
+  color: black;
 }
 
 #uploader{
@@ -102,12 +132,6 @@ article{
   font-size: 28px;
   margin-right: 6px;
   z-index: 1200;
-}
-
-#downloadBtn{
-  color: #aaa;
-  font-size: 28px;
-  margin-right: 6px;
 }
 
 #fileButton{

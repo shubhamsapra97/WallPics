@@ -103,7 +103,7 @@
       <img id="loginImage" src="images/logo.png" alt="loginPage" class="animated fadeInLeftBig">
   </div>
 
-
+  <div id="main-page">
 
     <!-- LAYOUT -->
 
@@ -121,7 +121,7 @@
   </ul>
 
     <!-- NAV BAR -->
-    <nav>
+    <nav id="navbars">
       <div class="nav-fixed">
         <a href="#" class="brand-logo center">WALLPICS</a>
         <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
@@ -213,6 +213,12 @@
       <i class="material-icons">add</i>
     </button>
 
+    <a id="downloading" download="" href="" title="">
+      <button id="downloadingBtn" class="mdl-button mdl-js-button mdl-button--fab">
+        <i id='downloadBtn' class='material-icons button'>file_download</i>
+      </button>
+    </a>
+
     <dialog id="addBtn-dialog" class="mdl-dialog animated headShake">
              <span class="close" onclick="dialogClose()">&times;</span>
              <h1 class="mdl-dialog__title">Add Items</h1>
@@ -225,7 +231,7 @@
         </div>
     </dialog>
 
-
+  </div>
 
   <!-- JQUERY ADDED -->
   <script src="js/jquery-3.1.1.min.js"></script>

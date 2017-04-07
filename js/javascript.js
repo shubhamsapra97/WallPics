@@ -1,45 +1,52 @@
-var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , item,cardImg;
+var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , item;
 
-var cardy = function(imgSrc, title, content){
+var cardy = function(imgSrc, imageCount){
     var row = document.createElement('div');
     $(row).addClass('row');
     var col = document.createElement('div');
     $(col).addClass('s4');
     var card = document.createElement('div');
     $(card).addClass('card');
-    cardImg = document.createElement('div');
+
+    var cardImg = document.createElement('div');
     $(cardImg).addClass('card-image');
+    $(cardImg).attr('id' , 'hello');
     var img = document.createElement('img');
     $(img).attr('src',imgSrc);
+    $(img).attr('id',imageCount);
+    $(img).click(function(e){
+      item = e.target.id;
+      $("#downloading").show();
+    });
     // $(img).attr('height' , '200');
     // $(img).attr('width' , '300');
     $(img).attr('class' , 'materialboxed');
-    var span = document.createElement('span');
-    $(span).addClass('card-title');
-    var anchor1 = document.createElement('a');
-    $(anchor1).addClass("btn-floating halfway-fab waves-effect waves-light red");
-    $(anchor1).attr("id" , "downloading");
-    $(anchor1).attr("download" , "");
-    $(anchor1).attr("href" , "");
-    $(anchor1).attr("title" , "");
-    var i = document.createElement('i');
-    $(i).addClass("material-icons");
-    $(i).attr("id" , "downloadBtn");
-    var cardCont = document.createElement('div');
-    $(cardCont).addClass('card-content');
-    var para = document.createElement('p');
+    // var span = document.createElement('span');
+    // $(span).addClass('card-title');
+    // var anchor1 = document.createElement('a');
+    // $(anchor1).addClass("btn-floating halfway-fab waves-effect waves-light red");
+    // $(anchor1).attr("id" , "downloading");
+    // $(anchor1).attr("download" , "");
+    // $(anchor1).attr("href" , "");
+    // $(anchor1).attr("title" , "");
+    // var i = document.createElement('i');
+    // $(i).addClass("material-icons");
+    // $(i).attr("id" , "downloadBtn");
+    // var cardCont = document.createElement('div');
+    // $(cardCont).addClass('card-content');
+    // var para = document.createElement('p');
     // var cardAct = document.createElement('div');
     // $(cardAct).addClass('card-action');
     // var anchor = document.createElement('a');
     // $(anchor).html("This is a link");
-    $(i).html("file_download");
-    $(anchor1).append(i);
-    $(span).html(title);
-    $(cardImg).append(img).append(span).append(anchor1);
-    $(para).html(content);
-    $(card-content).append(para);
+    // $(i).html("file_download");
+    // $(anchor1).append(i);
+    // $(span).html(title);
+    $(cardImg).append(img);
+    // $(para).html(content);
+    // $(card-content).append(para);
     // $(cardAct).append(anchor);
-    $(card).append(cardImg).append(cardCont);
+    $(card).append(cardImg);
     $(col).append(card);
     $(row).append(col);
     $("#myimg").append(row);
@@ -48,6 +55,7 @@ var cardy = function(imgSrc, title, content){
 (function(){
 
     $(".button-collapse").sideNav();
+    $("#downloading").hide();
 
     $('.button-collapse').sideNav({
      menuWidth: 300, // Default is 300
@@ -69,8 +77,7 @@ var cardy = function(imgSrc, title, content){
  hell.on('child_added', function(snapshot) {
   //  $(".image").attr("src" , snapshot.val());
   // $("#myimg").append("<img class='materialboxed happy' id='" + imageCount + "'src="+snapshot.val() + " width='200' height='300' style='padding-left:23px;' </img>");
-  $(cardImg).attr('id' , imageCount);
-  cardy(snapshot.val(),"Nature Beauty" , "Holla holla");
+  cardy(snapshot.val() , imageCount);
   imageCount++;
   $('.materialboxed').materialbox();
   //$("#"+imageCount).attr("class","materialboxed");
@@ -91,7 +98,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     // User is signed in.
     $("#loginImage").css("display", "none");
     $("#login-page").hide();
-    $("#downloadBtn").hide();
+    $("#downloading").hide();
     $("#deleteBtn").hide();
     $("#downloading").hide();
     $(".addOnsclose").hide();
@@ -101,7 +108,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     // $("#loginImage").removeClass('Shake');
 
 
-    if(user.uid != "mlVXa9EpK9YIxSHNvWXj9JTjMhM2"){
+    if(user.uid == "mlVXa9EpK9YIxSHNvWXj9JTjMhM2"){
       $("#addBtn").hide();
     }
     else{
@@ -309,6 +316,7 @@ $("#signupBtn").click(
     function(){
       firebase.auth().signOut().then(function() {
           console.log("logged out");
+          $("#downloading").hide();
           $("#login-dialog").removeClass('animated ' + 'fadeOut');
           // $('#login-dialog').addClass('animated fadeIn');
           setTimeout(function(){
@@ -345,15 +353,19 @@ $("#signupBtn").click(
     $(".addOnsclose").hide();
   }
 
-  var img = document.getElementById('identity');
-  img.addEventListener('click' , function(e){
-    item = e.target.id;
-    alert(item);
-    // var r = item.toString();
-    // if(r != "myimg"){
-    //   $("#downloading").show();
-    //   $("#downloadBtn").show();
-  });
+  // var img = document.getElementById('identity');
+  // img.addEventListener('click' , function(e){
+  //   item = e.target.id;
+  //   alert(item);
+  //   // var r = item.toString();
+  //   // if(r != "myimg"){
+  //   //   $("#downloading").show();
+  //   //   $("#downloadBtn").show();
+  // });
+
+  // $("#hello").click(function(e){
+  //   alert(e.target.id);
+  // });
 
   // ADDED FUNCTIONALITIES.....
 
@@ -461,11 +473,9 @@ $("#signupBtn").click(
 
   $("#downloading").click(function(e){
       var c = item.toString();
-      alert(item);
       $("#downloading").attr("download" , item);
       $("#downloading").attr("href" , $("#"+c).attr('src'));
       var k = $("#"+c).attr('src');
-      // alert(k);
       $("#downloading").attr("title" , item);
       $("#image").attr('src',k.slice(0,k.length-5));
   });

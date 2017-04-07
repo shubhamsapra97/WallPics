@@ -1,8 +1,45 @@
 var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , item;
 
-// $(document).ready(function(){
-//
-//   });
+var cardy = function(imgSrc, title, content){
+    var row = document.createElement('div');
+    $(row).addClass('row');
+    var col = document.createElement('div');
+    $(col).addClass('s4');
+    var card = document.createElement('div');
+    $(card).addClass('card');
+    var cardImg = document.createElement('div');
+    $(cardImg).addClass('card-image');
+    var img = document.createElement('img');
+    $(img).attr('src',imgSrc);
+    // $(img).attr('height' , '200');
+    // $(img).attr('width' , '300');
+    $(img).attr('class' , 'materialboxed');
+    var span = document.createElement('span');
+    $(span).addClass('card-title');
+    var anchor1 = document.createElement('a');
+    $(anchor1).addClass("btn-floating halfway-fab waves-effect waves-light red");
+    var i = document.createElement('i');
+    $(i).addClass("material-icons");
+    var cardCont = document.createElement('div');
+    $(cardCont).addClass('card-content');
+    var para = document.createElement('p');
+    var cardAct = document.createElement('div');
+    $(cardAct).addClass('card-action');
+    var anchor = document.createElement('a');
+    $(anchor).html("This is a l")
+    $(i).html("add");
+    $(anchor1).append(i);
+    $(span).html(title);
+    $(cardImg).append(img).append(span).append(anchor1);
+    $(para).html(content);
+    $(card-content).append(para);
+    $(cardAct).append(anchor);
+    $(card).append(cardImg).append(cardCont).append(cardAct);
+    $(col).append(card);
+    $(row).append(col);
+    $("#myimg").append(row);
+};
+
 (function(){
 
     $(".button-collapse").sideNav();
@@ -26,7 +63,8 @@ var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , 
  var hell = firebase.database().ref().child("myimages");
  hell.on('child_added', function(snapshot) {
   //  $(".image").attr("src" , snapshot.val());
-  $("#myimg").append("<img class='materialboxed happy' id='" + imageCount + "'src="+snapshot.val() + " width='200' height='300' style='padding-left:23px;' </img>");
+  // $("#myimg").append("<img class='materialboxed happy' id='" + imageCount + "'src="+snapshot.val() + " width='200' height='300' style='padding-left:23px;' </img>");
+  cardy(snapshot.val(),"Nature Beauty" , "Holla holla");
   imageCount++;
   $('.materialboxed').materialbox();
   //$("#"+imageCount).attr("class","materialboxed");
@@ -57,7 +95,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     // $("#loginImage").removeClass('Shake');
 
 
-    if(user.uid == "mlVXa9EpK9YIxSHNvWXj9JTjMhM2"){
+    if(user.uid != "mlVXa9EpK9YIxSHNvWXj9JTjMhM2"){
       $("#addBtn").hide();
     }
     else{

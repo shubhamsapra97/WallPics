@@ -1,4 +1,4 @@
-var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , item;
+var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , item,cardImg;
 
 var cardy = function(imgSrc, title, content){
     var row = document.createElement('div');
@@ -7,7 +7,7 @@ var cardy = function(imgSrc, title, content){
     $(col).addClass('s4');
     var card = document.createElement('div');
     $(card).addClass('card');
-    var cardImg = document.createElement('div');
+    cardImg = document.createElement('div');
     $(cardImg).addClass('card-image');
     var img = document.createElement('img');
     $(img).attr('src',imgSrc);
@@ -18,23 +18,28 @@ var cardy = function(imgSrc, title, content){
     $(span).addClass('card-title');
     var anchor1 = document.createElement('a');
     $(anchor1).addClass("btn-floating halfway-fab waves-effect waves-light red");
+    $(anchor1).attr("id" , "downloading");
+    $(anchor1).attr("download" , "");
+    $(anchor1).attr("href" , "");
+    $(anchor1).attr("title" , "");
     var i = document.createElement('i');
     $(i).addClass("material-icons");
+    $(i).attr("id" , "downloadBtn");
     var cardCont = document.createElement('div');
     $(cardCont).addClass('card-content');
     var para = document.createElement('p');
-    var cardAct = document.createElement('div');
-    $(cardAct).addClass('card-action');
-    var anchor = document.createElement('a');
-    $(anchor).html("This is a l")
-    $(i).html("add");
+    // var cardAct = document.createElement('div');
+    // $(cardAct).addClass('card-action');
+    // var anchor = document.createElement('a');
+    // $(anchor).html("This is a link");
+    $(i).html("file_download");
     $(anchor1).append(i);
     $(span).html(title);
     $(cardImg).append(img).append(span).append(anchor1);
     $(para).html(content);
     $(card-content).append(para);
-    $(cardAct).append(anchor);
-    $(card).append(cardImg).append(cardCont).append(cardAct);
+    // $(cardAct).append(anchor);
+    $(card).append(cardImg).append(cardCont);
     $(col).append(card);
     $(row).append(col);
     $("#myimg").append(row);
@@ -64,6 +69,7 @@ var cardy = function(imgSrc, title, content){
  hell.on('child_added', function(snapshot) {
   //  $(".image").attr("src" , snapshot.val());
   // $("#myimg").append("<img class='materialboxed happy' id='" + imageCount + "'src="+snapshot.val() + " width='200' height='300' style='padding-left:23px;' </img>");
+  $(cardImg).attr('id' , imageCount);
   cardy(snapshot.val(),"Nature Beauty" , "Holla holla");
   imageCount++;
   $('.materialboxed').materialbox();
@@ -339,14 +345,14 @@ $("#signupBtn").click(
     $(".addOnsclose").hide();
   }
 
-  var img = document.getElementById('myimg');
+  var img = document.getElementById('identity');
   img.addEventListener('click' , function(e){
     item = e.target.id;
-    var r = item.toString();
-    if(r != "myimg"){
-      $("#downloading").show();
-      $("#downloadBtn").show();
-    }
+    alert(item);
+    // var r = item.toString();
+    // if(r != "myimg"){
+    //   $("#downloading").show();
+    //   $("#downloadBtn").show();
   });
 
   // ADDED FUNCTIONALITIES.....
@@ -455,7 +461,7 @@ $("#signupBtn").click(
 
   $("#downloading").click(function(e){
       var c = item.toString();
-      // alert(item);
+      alert(item);
       $("#downloading").attr("download" , item);
       $("#downloading").attr("href" , $("#"+c).attr('src'));
       var k = $("#"+c).attr('src');

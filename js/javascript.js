@@ -1,6 +1,6 @@
 var dialog , user , displayName , photoURL , email , uid , imageCount=0 , c=0 , item;
 
-var cardy = function(imgSrc, imageCount){
+var cardy = function(imgSrc, imageCount , y){
     var row = document.createElement('div');
     $(row).addClass('row');
     var col = document.createElement('div');
@@ -32,8 +32,19 @@ var cardy = function(imgSrc, imageCount){
     // var i = document.createElement('i');
     // $(i).addClass("material-icons");
     // $(i).attr("id" , "downloadBtn");
-    // var cardCont = document.createElement('div');
-    // $(cardCont).addClass('card-content');
+    var cardCont = document.createElement('div');
+    $(cardCont).addClass('card-content');
+    $(cardCont).attr("height" , "10");
+    var frame = document.createElement('iframe');
+    $(frame).attr("src" , y);
+    $(frame).attr("width" , "60");
+    $(frame).attr("height" , "21");
+    $(frame).attr("border" , "none");
+    $(frame).attr("overflow" , "hidden");
+    $(frame).attr("scrolling" , "no");
+    $(frame).attr("frameborder" , "0");
+    $(frame).attr("allowTransparency" , "true" );
+    $(cardCont).append(frame);
     // var para = document.createElement('p');
     // var cardAct = document.createElement('div');
     // $(cardAct).addClass('card-action');
@@ -46,16 +57,27 @@ var cardy = function(imgSrc, imageCount){
     // $(para).html(content);
     // $(card-content).append(para);
     // $(cardAct).append(anchor);
-    $(card).append(cardImg);
+    $(card).append(cardImg).append(cardCont);
     $(col).append(card);
     $(row).append(col);
     $("#myimg").append(row);
 };
 
+$(window).scroll(function() {
+   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+       $("#top").show();
+   }
+});
+
+$("#top").click(function(){
+  $("#top").hide();
+});
+
 (function(){
 
     $(".button-collapse").sideNav();
     $("#downloading").hide();
+    $("#top").hide();
 
     $('.button-collapse').sideNav({
      menuWidth: 300, // Default is 300
@@ -77,7 +99,21 @@ var cardy = function(imgSrc, imageCount){
  hell.on('child_added', function(snapshot) {
   //  $(".image").attr("src" , snapshot.val());
   // $("#myimg").append("<img class='materialboxed happy' id='" + imageCount + "'src="+snapshot.val() + " width='200' height='300' style='padding-left:23px;' </img>");
-  cardy(snapshot.val() , imageCount);
+
+  var a = snapshot.val();
+  var w= a.slice(8,a.length).replace(/[\/]/g,'%2F');
+  var m = w.replace(/[&]/g,'%26');
+  var n = m.replace(/[?]/g,'%3F');
+  var e = n.replace(/[=]/g,'%3D');
+  var h = e.slice(0,78);
+  var q = e.slice(78,e.length);
+  var r = "https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F" + h + "52" + q + "&layout=button_count&size=small&mobile_iframe=true&appId=1822902874638854&width=68&height=20";
+
+
+
+
+
+  cardy(snapshot.val() , imageCount , r);
   imageCount++;
   $('.materialboxed').materialbox();
   //$("#"+imageCount).attr("class","materialboxed");

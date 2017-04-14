@@ -6,5 +6,4 @@
     
     •Firebase Login Signup Functionality provided.
     
-    •Materialize Framework used.
   

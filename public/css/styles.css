@@ -38,21 +38,19 @@
 }
 
 #box1{
-  width: 35vw;
-  height: 50vh;
+  width: 60%;
+  height: 100%;
 }
 
 #box2{
   top: 0;
-  width: 33vw;
-  height: 50vh;
+  width: 50%;
+  height: 50%;
   margin-left: 5%;
 }
 
 #loginBtn,#signupoption,#signupBtn,#signinoption{
      background-color: blue;
-     width: 120px;
-     height: 35px;
 }
 
 .horizontal{
@@ -77,12 +75,12 @@
 
 #fb,#google,#anome{
   font-size: 25px;
-  padding-left: 15px;
+  padding-left: 20px;
   color: white;
 }
 
 #links{
-  text-align: center;
+  padding-left: 6vw;
 }
 
 #fb:hover{
@@ -119,9 +117,9 @@
 }
 
 
-/*#signupBtn,#signupoption{
+#signupBtn,#signupoption{
   margin-left: 30px;
-}*/
+}
 
 #addBtn{
   top: 85vh;
@@ -144,44 +142,12 @@
   width: 15vw;
 }
 
-@media only screen and (max-width: 1000px) {
+/*@media only screen and (max-width: 1000px) {
     .row{
-      height: 31vh;
-      width: 120px;
-    }
-    .horizontal{
-      display: none;
-    }
-    #box1{
-      display: none;
-    }
-    #box2{
-      width: 100vw;
-    }
-    #login-dialog{
-      width: 40vw;
       height: 60vh;
+      width: 33.3vh;
     }
-
-}
-
-@media only screen and (max-width: 800px) {
-  #loginBtn,#signupoption,#signupBtn,#signinoption{
-       width: 60px;
-       height: 35px;
-       font-size: 12px;
-       text-align: center;
-  }
-  #login-dialog{
-    min-width: 200px;
-  }
-  #titles{
-    font-size: 20px;
-  }
-  #nav{
-    height: 40px;
-  }
-}
+}*/
 
 #myimg {
   display: flex;

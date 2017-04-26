@@ -1,189 +1,228 @@
-#main-page{
-  width: auto;
-  height: auto;
-  z-index: 1;
+#main-page {
+    width: auto;
+    height: auto;
+    z-index: 1;
 }
 
-#buttons{
-  text-align: center;
+#buttons {
+    text-align: center;
 }
 
-#padd1{
-  padding-top: 20px;
+#padd1 {
+    padding-top: 20px;
 }
 
-
-.fixed-action-btn{
-  position: absolute;
+.fixed-action-btn {
+    position: absolute;
 }
 
-#title{
-  padding-left: 35%;
-  color: white;
+#title {
+    padding-left: 35%;
+    color: white;
 }
 
-#navbars{
-  background-color: #003366;
+#navbars {
+    background-color: #003366;
 }
 
-#login-dialog{
-  position: fixed;
-  width: 60vw;
-  height: 70vh;
-  background-color: rgba(52,73,94,0.7);
+#login-dialog {
+    position: fixed;
+    width: 60vw;
+    height: 70vh;
+    background-color: rgba(52, 73, 94, 0.7);
 }
 
-#flexxy{
-  display: flex;
+#flexxy {
+    display: flex;
 }
 
-#box1{
-  width: 35vw;
-  height: 50vh;
+#box1 {
+    width: 35vw;
+    height: 50vh;
 }
 
-#box2{
-  top: 0;
-  width: 33vw;
-  height: 50vh;
-  margin-left: 5%;
+#box2 {
+    top: 0;
+    width: 33vw;
+    height: 50vh;
+    margin-left: 5%;
 }
 
-#loginBtn,#signupoption,#signupBtn,#signinoption{
-     background-color: blue;
-     width: 120px;
-     height: 35px;
+#loginBtn,
+#signupoption,
+#signupBtn,
+#signinoption {
+    background-color: blue;
+    width: 120px;
+    height: 35px;
 }
 
-.horizontal{
-  z-index: 1;
+.horizontal {
+    z-index: 1;
 }
 
-#signupdialog{
-  background-color: rgba(52,73,94,0.7);
-  position: fixed;
-  width: 60vw;
-  height: 70vh;
+#signupdialog {
+    background-color: rgba(52, 73, 94, 0.7);
+    position: fixed;
+    width: 60vw;
+    height: 70vh;
 }
 
-#color{
-  color: black;
+#color {
+    color: black;
 }
 
-#ul{
-  top: 8%;
-  right: 45px;
+#ul {
+    top: 8%;
+    right: 45px;
 }
 
-#fb,#google,#anome{
-  font-size: 25px;
-  padding-left: 15px;
-  color: white;
+#fb,
+#google,
+#anome {
+    font-size: 25px;
+    padding-left: 20px;
+    color: white;
 }
 
-#links{
-  text-align: center;
+#links {
+    padding-left: 6vw;
 }
 
-#fb:hover{
-  color: blue;
+#fb:hover {
+    color: blue;
 }
 
-#google:hover{
-  color: red;
+#google:hover {
+    color: red;
 }
 
-#anome:hover{
-  color: black;
+#anome:hover {
+    color: black;
 }
 
-#login-page{
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  position: fixed;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
+#login-page {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
 }
 
-#downloadPop{
-  top: 35%;
+#downloadPop {
+    top: 35%;
 }
 
-#loginProgress,#loginError{
-  display: none;
+#loginProgress,
+#loginError {
+    display: none;
 }
 
-
-/*#signupBtn,#signupoption{
-  margin-left: 30px;
-}*/
-
-#addBtn{
-  top: 85vh;
-  left: 92vw;
+#signupBtn,
+#signupoption {
+    margin-left: 30px;
 }
 
-#uploader{
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  margin-bottom: 10px;
+#addBtn {
+    top: 85vh;
+    left: 92vw;
 }
 
-#fileButton{
-  max-width: 100%;
+#uploader {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
-.row{
-  height: 60vh;
-  width: 15vw;
+#fileButton {
+    max-width: 100%;
 }
 
-@media only screen and (max-width: 1000px) {
-    .row{
-      height: 31vh;
-      width: 120px;
-    }
-    .horizontal{
-      display: none;
-    }
-    #box1{
-      display: none;
-    }
-    #box2{
-      width: 100vw;
-    }
-    #login-dialog{
-      width: 40vw;
-      height: 60vh;
-    }
-
-}
-
-@media only screen and (max-width: 800px) {
-  #loginBtn,#signupoption,#signupBtn,#signinoption{
-       width: 60px;
-       height: 35px;
-       font-size: 12px;
-       text-align: center;
-  }
-  #login-dialog{
-    min-width: 200px;
-  }
-  #titles{
-    font-size: 20px;
-  }
-  #nav{
-    height: 40px;
-  }
+.row {
+    height: 60vh;
+    width: 15vw;
 }
 
 #myimg {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#downloadify {
+    display: none;
+}
+
+#downloadingBtn {
+    position: fixed;
+    top: 85vh;
+    left: 70vw;
+    z-index: 1000;
+    width: 32px;
+    height: 52px;
+}
+
+@media only screen and (max-width: 1200px) {
+    #box1 {
+        display: none;
+    }
+    #box2 {
+        width: 100vw;
+    }
+    #login-dialog {
+        width: 40vw;
+        height: 60vh;
+        min-width: 300px;
+    }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 1200px) {
+    .row {
+        height: 50vh;
+        width: 150px;
+    }
+    .horizontal {
+        display: none;
+    }
+    #box1 {
+        display: none;
+    }
+    #box2 {
+        width: 100vw;
+    }
+    #login-dialog {
+        width: 40vw;
+        height: 60vh;
+        min-width: 300px;
+    }
+    #titli {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #loginBtn,
+    #signupoption,
+    #signupBtn,
+    #signinoption {
+        width: 60px;
+        height: 35px;
+        font-size: 12px;
+        text-align: center;
+    }
+    .row {
+        height: 30vh;
+        width: 100px;
+    }
+    .horizontal {
+        display: none;
+    }
+    #titli {
+        font-size: 20px;
+    }
 }

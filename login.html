@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>login dialog</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- MATERIAL ICONS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+<body data-title="login">
+  <div id="page">
+
+<div id="login1">
+  <div id="login2">
+    <img src="images/rabbit.jpg" class="img-responsive img-cover">
+  </div>
+  <div id="login3">
+
+      <div id="login-box">
+        <div id="logos">
+          <img src="images/anony.png" id="anome" title="anonymously sign in">
+          <img src="images/fb.png" id="fb" title="fb sign in">
+          <img src="images/google.png" id="google" title="google sign in">
+        </div>
+        <div id="profile-image">
+          <img src="images/placeholder.png" alt="profile-pic" class="img-circle">
+        </div>
+        <div id="forms">
+          <form>
+            <br>
+            <div id="form2" class="form-group">
+              <div class="form1"><label for="loginEmail">Email address</label></div>
+              <div class="col-md-12 col-lg-12"><input type="email" class="form-control" id="loginEmail" placeholder="Email" autofocus required autocomplete="loginEmail"></div>
+            </div><br>
+            <div id="form3" class="form-group">
+              <div class="form1"><label for="loginPassword">Password</label></div>
+              <div class="col-md-12 col-lg-12"><input type="password" class="form-control" id="loginPassword" placeholder="Password" required></div>
+            </div>
+            <div id="form4" class="form-group form1">
+              <label for="exampleInputFile">File input</label>
+              <input type="file" id="exampleInputFile">
+            </div>
+            <div class="checkbox form1">
+              <label>
+                <input type="checkbox">Remember Me!
+              </label>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm loginBtn">Log In</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- <dialog id="login-dialog" class="mdl-dialog animated fadeIn">
+            <div class="center-align">
+              <i id="anome" title="Sign in Anonymously" class="material-icons">&#xE87C;</i>
+              <i id="fb" class="fa fa-facebook" title="Sign in with Facebook" aria-hidden="true"></i>
+              <i id="google" class="fa fa-google" title="Sign in with Google" aria-hidden="true"></i>
+            </div>
+            <h4 id="title" class="center-align">Sign In</h4>
+            <p id="loginError" class="animated flash"></p>
+          <div id="padd-top">
+          <div class="input-field col s5 inp">
+              <input type="text" class="validate" id="loginEmail">
+              <label id="color" for="Email">Email</label>
+          </div>
+          <div class="input-field col s4 inp">
+              <input type="text" class="validate" id="loginPassword">
+              <label id="color" for="Password">Password</label>
+          </div>
+
+          <div id="option">
+            <span>
+              <p>
+                <br>
+                <input type="checkbox" id="test6" checked="checked" />
+                <label for="test6">Remember me</label>
+              </p>
+            </span>
+            <h6 id="test7">Forgot Password?</h6>
+          </div>
+
+          <div id="buttons">
+            <a id="loginBtn" class="waves-effect waves-light btn">Log In</a>
+          </div>
+        </div>
+    </dialog>
+
+  </div>
+</div>-->
+</div>
+
+<!-- <dialog id="signupdialog" class="mdl-dialog animated fadeIn">
+        <h4 id="title">Sign Up</h4>
+        <p id="loginError" class="animated flash"></p>
+        <div class="input-field col s4">
+            <input type="text" class="validate" id="loginEmail1">
+            <label id="color" for="Email">Email</label>
+        </div>
+        <div class="input-field col s4">
+              <input type="text" class="validate" id="loginPassword1">
+              <label id="color" for="password">Password</label>
+        </div>
+
+      <div id="buttons">
+        <a id="signinoption" class="waves-effect waves-light btn">Sign In</a>
+
+        <a id="signupBtn" class="waves-effect waves-light btn">Sign Up</a>
+</dialog> -->
+
+  <!-- JQUERY ADDED -->
+  <script src="js/jquery-3.1.1.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBknMlm6ACiTt6cY5uhnjS8Kd2hpaqdWkI",
+      authDomain: "blog-5946b.firebaseapp.com",
+      databaseURL: "https://blog-5946b.firebaseio.com",
+      projectId: "blog-5946b",
+      storageBucket: "blog-5946b.appspot.com",
+      messagingSenderId: "312539679508"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+
+  <script type="text/javascript" src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
+  <script type="text/javascript" src="https://cdn.firebase.com/js/simple-login/1.6.1/firebase-simple-login.js"></script>
+
+  <!-- EXTERNAL JS FILE LINKED-->
+  <script src="js/javascript.js" type="text/javascript"></script>
+
+</body>
+</html>

@@ -1,228 +1,441 @@
-#main-page {
-    width: auto;
-    height: auto;
-    z-index: 1;
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
 }
 
-#buttons {
-    text-align: center;
+#mp,#contain{
+  width: auto;
+  height: auto;
+  overflow-x: hidden;
 }
 
-#padd1 {
-    padding-top: 20px;
+.form1{
+  padding-left: 10px;
 }
 
-.fixed-action-btn {
-    position: absolute;
+#login-box{
+  width: 30vw;
+  height: 85vh;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 7vh;
 }
 
-#title {
-    padding-left: 35%;
-    color: white;
+#nav{
+  background-color: white;
 }
 
-#navbars {
-    background-color: #003366;
+#logos1{
+  font-size: 30px;
+  color: black;
+  /*margin-left: 20px;*/
 }
 
-#login-dialog {
-    position: fixed;
-    width: 60vw;
-    height: 70vh;
-    background-color: rgba(52, 73, 94, 0.7);
+#buttons{
+  text-align: center;
 }
 
-#flexxy {
-    display: flex;
+#padd1{
+  padding-top: 20px;
 }
 
-#box1 {
-    width: 35vw;
-    height: 50vh;
+
+.fixed-action-btn{
+  position: absolute;
 }
 
-#box2 {
-    top: 0;
-    width: 33vw;
-    height: 50vh;
-    margin-left: 5%;
+#title{
+  color: white;
 }
 
-#loginBtn,
-#signupoption,
-#signupBtn,
-#signinoption {
-    background-color: blue;
-    width: 120px;
-    height: 35px;
+#navbars{
+  background-color: #003366;
 }
 
-.horizontal {
-    z-index: 1;
+#login-dialog{
+  width: 30vw;
+  height: 80vh;
+  background-color: rgba(52,73,94,0.7);
 }
 
-#signupdialog {
-    background-color: rgba(52, 73, 94, 0.7);
-    position: fixed;
-    width: 60vw;
-    height: 70vh;
+.inp{
+  width: 26vw;
+  padding-left: 23px;
 }
 
-#color {
-    color: black;
+#padd-top{
+  padding-top: 2vh;
 }
 
-#ul {
-    top: 8%;
-    right: 45px;
+#flexxy{
+  display: flex;
 }
 
-#fb,
-#google,
-#anome {
-    font-size: 25px;
-    padding-left: 20px;
-    color: white;
+#logos{
+  /*margin-left: 27%;*/
+  text-align: center;
+  padding-right: 15px;
+  margin-top: 10px;
 }
 
-#links {
-    padding-left: 6vw;
+#fb,#google,#anome{
+  max-width: 45px;
+  max-height: 45px;
 }
 
-#fb:hover {
-    color: blue;
+#profile-image{
+  text-align: center;
+  padding-top: 20px;
 }
 
-#google:hover {
-    color: red;
+#option{
+  display: flex;
+  width: 100%;
+  margin-left: 1.5vw;
+}
+#test6{
+  width: 100%;
+  margin-top: 100px;
+}
+#test7{
+  width: 50%;
+  text-align: right;
 }
 
-#anome:hover {
-    color: black;
+#box1{
+  width: 60%;
+  height: 100%;
 }
 
-#login-page {
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    position: fixed;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
+#box2{
+  top: 0;
+  width: 50%;
+  height: 50%;
+  margin-left: 5%;
 }
 
-#downloadPop {
-    top: 35%;
+.loginBtn,.signupBtn{
+     margin-left: 45%;
 }
 
-#loginProgress,
-#loginError {
-    display: none;
+.horizontal{
+  z-index: 1;
 }
 
-#signupBtn,
-#signupoption {
-    margin-left: 30px;
+#signupdialog{
+  background-color: rgba(52,73,94,0.7);
+  position: fixed;
+  width: 60vw;
+  height: 70vh;
 }
 
-#addBtn {
-    top: 85vh;
-    left: 92vw;
+#color{
+  color: black;
+  padding-left: 23px;
 }
 
-#uploader {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    margin-bottom: 10px;
+#ul{
+  top: 8%;
+  right: 45px;
 }
 
-#fileButton {
-    max-width: 100%;
+#fb,#google,#anome{
+  font-size: 25px;
+  padding-left: 20px;
 }
 
-.row {
-    height: 60vh;
-    width: 15vw;
+#fb:hover{
+  color: blue;
+}
+
+#google:hover{
+  color: red;
+}
+
+#anome:hover{
+  color: black;
+}
+
+#downloadPop{
+  top: 35%;
+}
+
+#loginProgress,#loginError{
+  display: none;
+}
+
+
+#signupBtn,#signupoption{
+  margin-left: 30px;
+}
+
+#addBtn{
+  top: 85vh;
+  left: 92vw;
+}
+
+#uploader{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#fileButton{
+  max-width: 100%;
+}
+
+.photo{
+  padding-left: 50px;
+}
+
+.lefty{
+  padding-left: 55px;
+}
+
+#heading{
+  line-height: 100px;
+  padding-left: 50px;
+  font-size: 35px;
+  font-weight: 1000;
+}
+#heading1{
+  /*line-height: 100px;*/
+  padding-left: 50px;
+  font-size: 40px;
+  font-weight: 1000;
+}
+
+footer{
+  width: 100vw;
+  height: 25vh;
+  background-color: grey;
+}
+
+.space{
+  margin-top: 50px;
+}
+
+#icons{
+  display: flex;
+}
+
+.icon{
+  padding-top: 45px;
+  font-size: 25px;
+  width: 30px;
+}
+
+.second{
+  display: flex;
+  color: black;
+  padding-left: 46vw;
+  padding-top: 10px;
+}
+
+#page{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
+#login1{
+  max-width: 100vw;
+  max-height: 100vh;
+  display: flex;
+}
+
+#login2{
+  width: 45vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#login3{
+  width: 50vw;
+  height: 100vh;
+}
+
+#loginbox{
+  width: 30vw;
+  height: 70vh;
+  margin-top: 15vh;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.info{
+  width: 80px;
+}
+
+.adjust{
+  max-width: 200px;
+  max-height: 500px;
 }
 
 #myimg {
-    display: flex;
-    flex-wrap: wrap;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-#downloadify {
-    display: none;
+.img-cover{
+  width: 100%;
+  height: 100vh;
+  padding-left: 13vw;
+  -webkit-filter : hue-rotate(-180deg);
+  filter : hue-rotate(-180deg);
 }
 
-#downloadingBtn {
-    position: fixed;
-    top: 85vh;
-    left: 70vw;
-    z-index: 1000;
-    width: 32px;
-    height: 52px;
+.preloader{
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 100px;
+  height: 100px;
 }
 
-@media only screen and (max-width: 1200px) {
-    #box1 {
-        display: none;
+/*.in{
+  position: absolute;
+  margin-right: 20vw;
+}*/
+
+@media only screen and (max-width: 1100px) and (min-width: 700px)  {
+
+    #login-box{
+      min-width: 350px;
     }
-    #box2 {
-        width: 100vw;
+    #login2{
+      height: 60%;
+      width: 50%;
     }
-    #login-dialog {
-        width: 40vw;
-        height: 60vh;
-        min-width: 300px;
+
+    .centery{
+      padding: 0;
+      margin: 0;
+      padding-left: 2.9vw;
+    }
+
+    .lefty{
+      padding: 0;
+      margin: 0;
+      margin-left: 4vw;
+    }
+
+}
+
+@media only screen and (max-width: 700px)  and (min-width: 471px)  {
+
+    #login-box{
+      min-width: 50vw;
+      margin-left: 30vw;
+    }
+    #login2{
+      display: none;
+    }
+
+    .photo{
+      margin-left: 20vw;
+    }
+
+    .lefty{
+      margin: 0;
+      padding: 0;
+      margin-left: 32vw;
+    }
+
+    .centery{
+      margin: 0;
+      padding: 0;
+      margin-left: 5vw;
+    }
+
+}
+
+@media only screen and (max-width: 933px)  and (min-width: 600px)  {
+
+    .photo{
+      margin: 0;
+      padding: 0;
+    }
+
+    .lefty{
+      margin: 0;
+      padding: 0;
+      margin-left: 20px;
+    }
+
+    .centery{
+      padding: 0;
+      margin: 0;
+      font-size: 15px;
+      white-space: 1px;
+    }
+
+    .adjust{
+      max-width: 200px;
+      max-height: 400px;
+    }
+
+}
+
+@media only screen and (max-width: 400px)  {
+
+    #login-box{
+      min-width: 100vw;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+    #login2,.horizontal{
+      display: none;
+    }
+
+    .preloader{
+      margin-right:5vw;
+    }
+
+    .adjust{
+      max-width: 100px;
+      max-height: 300px;
     }
 }
 
-@media only screen and (min-width: 400px) and (max-width: 1200px) {
-    .row {
-        height: 50vh;
-        width: 150px;
-    }
-    .horizontal {
-        display: none;
-    }
-    #box1 {
-        display: none;
-    }
-    #box2 {
-        width: 100vw;
-    }
-    #login-dialog {
-        width: 40vw;
-        height: 60vh;
-        min-width: 300px;
-    }
-    #titli {
-        font-size: 20px;
-    }
-}
+@media only screen and (max-width: 470px) and (min-width: 401px)  {
 
-@media only screen and (max-width: 400px) {
-    #loginBtn,
-    #signupoption,
-    #signupBtn,
-    #signinoption {
-        width: 60px;
-        height: 35px;
-        font-size: 12px;
-        text-align: center;
+    #login-box{
+      min-width: 100vw;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
     }
-    .row {
-        height: 30vh;
-        width: 100px;
+
+    #login2,.horizontal{
+      display: none;
     }
-    .horizontal {
-        display: none;
+
+    .adjust{
+      max-width: 100px;
+      max-height: 300px;
     }
-    #titli {
-        font-size: 20px;
+
+    .photo{
+      margin-left:10vw;
     }
+
+    .lefty{
+      margin: 0;
+      padding: 0;
+      margin-left: 30%;
+    }
+
+    .centery{
+      margin: 0;
+      padding: 0;
+    }
+
 }

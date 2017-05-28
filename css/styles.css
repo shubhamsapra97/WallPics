@@ -12,7 +12,7 @@
 }
 
 .form1{
-  padding-left: 10px;
+  margin-left: 10px;
 }
 
 #login-box{
@@ -21,6 +21,10 @@
   border: 1px solid black;
   border-radius: 10px;
   margin-top: 7vh;
+}
+
+.photo{
+  margin-left: 20%;
 }
 
 #nav{
@@ -187,14 +191,6 @@
   max-width: 100%;
 }
 
-.photo{
-  padding-left: 50px;
-}
-
-.lefty{
-  padding-left: 55px;
-}
-
 #heading{
   line-height: 100px;
   padding-left: 50px;
@@ -299,10 +295,9 @@ footer{
   height: 100px;
 }
 
-/*.in{
-  position: absolute;
-  margin-right: 20vw;
-}*/
+#in{
+  cursor: pointer;
+}
 
 @media only screen and (max-width: 1100px) and (min-width: 700px)  {
 
@@ -312,18 +307,6 @@ footer{
     #login2{
       height: 60%;
       width: 50%;
-    }
-
-    .centery{
-      padding: 0;
-      margin: 0;
-      padding-left: 2.9vw;
-    }
-
-    .lefty{
-      padding: 0;
-      margin: 0;
-      margin-left: 4vw;
     }
 
 }
@@ -338,48 +321,22 @@ footer{
       display: none;
     }
 
-    .photo{
-      margin-left: 20vw;
-    }
-
-    .lefty{
-      margin: 0;
-      padding: 0;
-      margin-left: 32vw;
-    }
-
-    .centery{
-      margin: 0;
-      padding: 0;
-      margin-left: 5vw;
-    }
-
 }
 
 @media only screen and (max-width: 933px)  and (min-width: 600px)  {
-
-    .photo{
-      margin: 0;
-      padding: 0;
-    }
-
-    .lefty{
-      margin: 0;
-      padding: 0;
-      margin-left: 20px;
-    }
-
-    .centery{
-      padding: 0;
-      margin: 0;
-      font-size: 15px;
-      white-space: 1px;
-    }
 
     .adjust{
       max-width: 200px;
       max-height: 400px;
     }
+
+}
+
+@media only screen and (max-width: 600px)  and (min-width: 400px)  {
+
+  .photo{
+    margin-left: 34%;
+  }
 
 }
 
@@ -421,21 +378,6 @@ footer{
     .adjust{
       max-width: 100px;
       max-height: 300px;
-    }
-
-    .photo{
-      margin-left:10vw;
-    }
-
-    .lefty{
-      margin: 0;
-      padding: 0;
-      margin-left: 30%;
-    }
-
-    .centery{
-      margin: 0;
-      padding: 0;
     }
 
 }

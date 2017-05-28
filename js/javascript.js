@@ -80,6 +80,7 @@ if($("body").data("title") === "login"){
       if (firebase.auth().currentUser) {
         // [START signout]
         firebase.auth().signOut();
+        db();
         // [END signout]
       } else {
         // [START authanon]
